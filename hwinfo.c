@@ -4,10 +4,10 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <inttypes.h>
-#define CONTROL   0x44E10000
+#define CONTROL           0x44E10000
 #define CONTROL_STATUS    0x40
-#define DEVICE_ID 0x600
-#define END       0x44E11444
+#define DEVICE_ID         0x600
+#define END               0x44E11444
 
 int main() {
   volatile uint32_t *dev_info, *status;
