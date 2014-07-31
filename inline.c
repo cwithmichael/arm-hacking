@@ -2,7 +2,7 @@
 
 int main()
 {
-   char result[12];
+   char result[13];
    asm __volatile__
     (
      "xor %%eax, %%eax\n"
@@ -14,5 +14,7 @@ int main()
      :"m"((result)), 
       "m"(*(result+4)), "m"(*(result+8))
     );
+
+   result[13] = '\0';
    printf("The Vendor ID is %s\n", result);
 }
