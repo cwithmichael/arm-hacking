@@ -4,10 +4,12 @@
 #include <unistd.h>
 #include <sys/mman.h>
 #include <inttypes.h>
-#define CONTROL           0x44E10000
+
+#define CONTROL_START     0x44E10000
 #define CONTROL_STATUS    0x40
 #define DEVICE_ID         0x600
-#define END               0x44E11444
+#define CONTROL_END       0x44E11444
+#define CONTROL_SIZE      (CONTROL_END - CONTROL_START)
 
 int main() {
   volatile uint32_t *dev_info, *status;
@@ -17,8 +19,9 @@ int main() {
     printf("COULDN'T OPEN FILE\n");
     exit(1);
   }
-  volatile void *base = mmap(0, END-CONTROL, PROT_READ | PROT_WRITE,
-                                MAP_SHARED, fd, CONTROL); 
+
+  volatile void *base = mmap(0, CONTROL_SIZE, PROT_READ | PROT_WRITE,
+                                MAP_SHARED, fd, CONTROL_START); 
   if(mmap == MAP_FAILED) {
     printf("MAP FAILED\n");
     exit(1);
