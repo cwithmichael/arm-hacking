@@ -15,6 +15,6 @@ int main()
       "m"(*(result+4)), "m"(*(result+8))
     );
 
-   result[13] = '\0';
+   result[12] = '\0';
    printf("The Vendor ID is %s\n", result);
 }
