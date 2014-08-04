@@ -12,7 +12,6 @@
 #define CONTROL_SIZE      (CONTROL_END - CONTROL_START)
 
 int main() {
-  volatile uint32_t *dev_info, *status;
   int fd = open("/dev/mem", O_RDWR);
 
   if(fd == -1) {
@@ -27,8 +26,8 @@ int main() {
     exit(1);
   }
 
-  status = base + (CONTROL_STATUS);
-  dev_info = base + (DEVICE_ID);
+  volatile uint32_t *const status = base + (CONTROL_STATUS);
+  volatile uint32_t *const dev_info = base + (DEVICE_ID);
   printf("Hardware Info: %x\n", *(volatile uint32_t *)status);
   printf("Device Info: %x\n", *(volatile uint32_t *)dev_info);
 
