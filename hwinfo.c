@@ -20,7 +20,7 @@ int main() {
     exit(1);
   }
 
-  volatile void *base = mmap(0, CONTROL_SIZE, PROT_READ | PROT_WRITE,
+  volatile void *const base = mmap(0, CONTROL_SIZE, PROT_READ | PROT_WRITE,
                                 MAP_SHARED, fd, CONTROL_START); 
   if(mmap == MAP_FAILED) {
     printf("MAP FAILED\n");
